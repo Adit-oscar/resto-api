@@ -1,5 +1,17 @@
 <?php
 
+require_once 'Config/Database.php';
+
+// Autoload Core
 spl_autoload_register(function ($class) {
-  require_once "core/{$class}.php";
+  $class = explode('\\', $class);
+  $class = end($class);
+  require "Core/{$class}.php";
+});
+
+// // Autoload Helper
+spl_autoload_register(function ($class) {
+  $class = explode('\\', $class);
+  $class = end($class);
+  require "Helper/{$class}.php";
 });
