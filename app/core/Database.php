@@ -17,12 +17,6 @@ class Database
   public function __construct()
   {
 
-    $this->db = $this->db();
-  }
-
-  public function db()
-  {
-
     $conn = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
     return $conn;
   }
