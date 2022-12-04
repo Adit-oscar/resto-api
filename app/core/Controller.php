@@ -15,4 +15,11 @@ class Controller
     require_once 'app/Helper/' . $class . '.php';
     return new $class;
   }
+
+  public function request_method()
+  {
+
+    $req_method = $_SERVER['REQUEST_METHOD'];
+    return $req_method;
+  }
 }

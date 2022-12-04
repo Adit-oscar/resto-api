@@ -10,11 +10,12 @@ class App
 {
 
   protected $controller = 'Makanan';
-  protected $method = 'index';
+  protected $method = 'Index';
   protected $params = [];
 
   public function __construct()
   {
+
     $url = $this->parseUrl();
 
     if ($url !== null) {

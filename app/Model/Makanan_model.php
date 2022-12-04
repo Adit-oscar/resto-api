@@ -1,6 +1,6 @@
 <?php
 
-use core\Database\Database;
+use Core\Database\Database;
 
 class Makanan_model extends Database
 {

@@ -19,34 +19,51 @@ class Makanan extends Controller
     $this->helper->controller_not_found('fail', 'Controller / Method Not Found!', 404);
   }
 
+
+  public function addMakanan()
+  {
+  }
+
   public function getAllMakanan()
   {
-    $data = $this->model->getAllMakanan();
 
-    $arrData = [];
-    while ($datas = $data->fetch_assoc()) {
-      $arrData[] = $datas;
+    if ($this->request_method() === 'GET') {
+
+      $data = $this->model->getAllMakanan();
+
+      $arrData = [];
+      while ($datas = $data->fetch_assoc()) {
+        $arrData[] = $datas;
+      }
+
+      $this->helper->getAllMakananHandler('success', $arrData, 200);
+    } else {
+
+      $this->helper->method_not_found('fail', 'Method Not Found!', 404);
     }
-
-    $this->helper->getAllMakananHandler('success', $arrData, 200);
   }
 
   public function getMakananById($id = '')
   {
 
-    if (!empty($id)) {
+    if ($this->request_method() === 'GET') {
 
-      $data = $this->model->getMakananById($id);
+      if (!empty($id)) {
 
-      if ($data->num_rows == 1) {
-        $datas = $data->fetch_assoc();
+        $data = $this->model->getMakananById($id);
 
-        $this->helper->getMakananByIdHandler('success', $datas, 200);
+        if ($data->num_rows == 1) {
+          $datas = $data->fetch_assoc();
+
+          $this->helper->getMakananByIdHandler('success', $datas, 200);
+        } else {
+          $this->helper->id_not_found_handler('fail', "Data dengan id: {$id} tidak ditemukan!", 404);
+        }
       } else {
-        $this->helper->id_not_found_handler('fail', "Data dengan id: {$id} tidak ditemukan!", 404);
+        $this->helper->id_not_found_handler('fail', "Parameter id harus diisi!", 404);
       }
     } else {
-      $this->helper->id_not_found_handler('fail', "Parameter id harus diisi!", 404);
+      $this->helper->method_not_found('fail', 'Method Not Found!', 404);
     }
   }
 

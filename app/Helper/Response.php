@@ -109,4 +109,20 @@ class Response
     http_response_code($this->status_code = $status_code);
     return $parse_json;
   }
+
+  public function method_not_found($status, $message, $status_code)
+  {
+
+    $response = [
+      "status" => $this->status = $status,
+      "message" => $this->message = $message
+    ];
+
+    $parse_json = json_encode($response);
+
+    echo $parse_json;
+
+    http_response_code($this->status_code = $status_code);
+    return $parse_json;
+  }
 }
