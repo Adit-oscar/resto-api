@@ -1,81 +1,160 @@
 <?php
 
-// namespace Helper\Response;
-
 class Response
 {
 
-  public $data = [];
-  public $status = '';
-  public $message = '';
-  public $status_code = 200;
+  protected $status = "";
+  protected $data = [];
+  protected $message = "";
+  protected $status_code = 200;
 
-  public function getAllMakananHandler($status, $data, $status_code)
+  public function response_addMakanan($status, $message, $status_code)
   {
 
-    $response = [
+    $respon = [
+      "data" => [
+        "status" => $this->status = $status,
+        "message" => $this->message = $message
+      ]
+    ];
+
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
+
+    echo $json_data;
+
+    header('Content-Type: application/json');
+    http_response_code($this->status_code = $status_code);
+    return $json_data;
+  }
+
+  public function response_failAddMakanan($status, $message, $status_code)
+  {
+
+    $respon = [
+      "data" => [
+        "status" => $this->status = $status,
+        "message" => $this->message = $message
+      ]
+    ];
+
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
+
+    echo $json_data;
+
+    header('Content-Type: application/json');
+    http_response_code($this->status_code = $status_code);
+    return $json_data;
+  }
+
+  public function response_field_empty($status, $message, $status_code)
+  {
+
+    $respon = [
+      "data" => [
+        "status" => $this->status = $status,
+        "message" => $this->message = $message
+      ]
+    ];
+
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
+
+    echo $json_data;
+
+    header('Content-Type: application/json');
+    http_response_code($this->status_code = $status_code);
+    return $json_data;
+  }
+
+  public function response_idNotFound($status, $message, $status_code)
+  {
+
+    $respon = [
+      "status" => $this->status = $status,
+      "message" => $this->message = $message
+    ];
+
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
+
+    echo $json_data;
+
+    header('Content-Type: application/json');
+    http_response_code($this->status_code = $status_code);
+    return $json_data;
+  }
+
+  public function response_getMakanan($status, $data, $status_code)
+  {
+
+    $respon = [
       "status" => $this->status = $status,
       "data" => [
         "makanan" => $this->data = $data
       ]
     ];
 
-    $parse_json = json_encode($response);
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
 
-    echo $parse_json;
+    echo $json_data;
 
     http_response_code($this->status_code = $status_code);
-    return $parse_json;
+    return $json_data;
   }
 
-  public function getMakananByIdHandler($status, $data, $status_code)
+  public function response_deleteMakanan($status, $message, $status_code)
   {
 
-    $response = [
-      "status" => $this->status = $status,
+    $respon = [
       "data" => [
-        "makanan" => $this->data = $data
+        "status" => $this->status = $status,
+        "message" => $this->message = $message
       ]
     ];
 
-    $parse_json = json_encode($response);
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
 
-    echo $parse_json;
+    echo $json_data;
 
+    header('Content-Type: application/json');
     http_response_code($this->status_code = $status_code);
-    return $parse_json;
+    return $json_data;
   }
 
-  public function id_not_found_handler($status, $message, $status_code)
+  public function response_updateMakanan($status, $message, $status_code)
   {
 
-    $response = [
-      "status" => $this->status = $status,
-      "message" => $this->message = $message
+    $respon = [
+      "data" => [
+        "status" => $this->status = $status,
+        "message" => $this->message = $message
+      ]
     ];
 
-    $parse_json = json_encode($response);
+    $json_data = json_encode($respon, JSON_PRETTY_PRINT);
 
-    echo $parse_json;
+    echo $json_data;
 
+    header('Content-Type: application/json');
     http_response_code($this->status_code = $status_code);
-    return $parse_json;
+    return $json_data;
   }
 
-  public function delete_handler($status, $message, $status_code)
+  public function response_notFound($status, $message, $status_code)
   {
 
-    $response = [
-      "status" => $this->status = $status,
-      "message" => $this->message = $message
+    $respon = [
+      "data" => [
+        "status" => $this->status = $status,
+        "message" => $this->message = $message
+      ]
     ];
 
-    $parse_json = json_encode($response);
+    $json_data = json_encode($respon, 1, JSON_PRETTY_PRINT);
 
-    echo $parse_json;
+    echo $json_data;
 
+    header('Content-Type: application/json');
     http_response_code($this->status_code = $status_code);
-    return $parse_json;
+    return $json_data;
   }
 
   public function controller_not_found($status, $message, $status_code)
