@@ -4,7 +4,7 @@ namespace Core\App;
 
 require_once 'app/Helper/Response.php';
 
-use Response;
+use app\Helper\Response\Response;
 
 class App
 {

@@ -13,6 +13,7 @@ class Controller
   public function helper($class)
   {
     require_once 'app/Helper/' . $class . '.php';
+    $class = "app\Helper\\$class\\$class";
     return new $class;
   }
 
