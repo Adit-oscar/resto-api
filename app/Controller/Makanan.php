@@ -75,7 +75,6 @@ class Makanan extends Controller
 
   function addMakanan()
   {
-    global $db;
 
     $nama_makanan = isset($_POST['nama_makanan']) ? $_POST['nama_makanan'] : '';
     $harga_makanan = isset($_POST['harga_makanan']) ? $_POST['harga_makanan'] : '';
