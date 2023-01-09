@@ -28,4 +28,16 @@ class Makanan_model extends Database
 
     return $data;
   }
+
+  public function add_makanan($data)
+  {
+
+    $nama_makanan = $data['nama'];
+    $harga_makanan = $data['harga'];
+
+    $sql = "INSERT INTO makanan VALUES ('', '$nama_makanan', '$harga_makanan')";
+    $query = $this->db->query($sql);
+
+    return $query;
+  }
 }

@@ -82,8 +82,12 @@ class Makanan extends Controller
 
     if ($nama_makanan !== '' && $harga_makanan !== '') {
 
-      $sql = "INSERT INTO makanan VALUES ('', '$nama_makanan', '$harga_makanan')";
-      $query = $db->query($sql);
+      $data = [
+        "nama" => $nama_makanan,
+        "harga" => $harga_makanan
+      ];
+
+      $query = $this->model->add_makanan($data);
 
       if ($query === true) {
 
