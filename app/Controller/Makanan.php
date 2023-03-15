@@ -111,4 +111,30 @@ class Makanan extends Controller
       return $response->response_field_empty();
     }
   }
+
+  function updateMakanan($id = '')
+  {
+    if ($id != '') {
+
+      $status = $this->model->getMakananById($id);
+
+      if ($status->num_rows == 1) {
+        $dataMakanan = $status->fetch_assoc();
+
+        $data = [
+          "id" => $dataMakanan['id'],
+          "nama" => $dataMakanan['nama_makanan'],
+          "harga" => $dataMakanan['harga_makanan']
+        ];
+
+        $this->helper->response_getMakanan("success", $data, 200);
+      } else {
+        $response = $this->helper->response_idNotFound('fial', "Data dengan id: $id tidak ada dalam database", 404);
+        return $response;
+      }
+    } else {
+      $response = $this->helper->response_idNotFound('fail', 'Id tidak boleh kosong', 400);
+      return $response;
+    }
+  }
 }
